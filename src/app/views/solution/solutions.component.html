@@ -1,3 +1,132 @@
 <div class='container'>
- 
-</div>
+  <!-- TITLE -->
+  <div class='row my-4'>
+    <div class='title-container col-6 d-flex'>
+      <input class='title col-10' [(ngModel)]="problem.title" />
+      <i class="title-icon col-2 fal fa-pencil-alt"></i>
+    </div>
+  </div>
+
+  <div class='row'>
+    <h2 class='my-4'>Please add a solution for each reason, define its impact and feasibility and prioritize it.</h2>
+  </div>
+
+  <div class='row'>
+    <div class='col-8'>
+
+      <div *ngFor='let type of data, let i = index'>
+        <div *ngFor='let reason of type.reasons, let n = index'>
+          <!-- MATERIAL REASON HEADER -->
+          <div class='row reason-solution align-items-center'>
+            <div class='col-7 text-left'>{{reason.description}}</div>
+            <div class='col-3'>
+              <button class='btn add-reason' (click)='showAddSolutionModal(i , n)'>+ add a solution</button>
+            </div>
+            <div class='col-2'>{{reason.type}}</div>
+          </div>
+          <!-- MATERIAL SOLUTIONS -->
+          <div *ngFor='let solution of reason.solutions' class='row solution-implemented'>
+            <div class='col-2'>
+              <div class='round-button'>
+                <i class="fal fa-eye"></i>
+              </div>
+              <div class='round-button'>A</div>
+            </div>
+            <div class='col-4 d-flex flex-column text-left'>
+              <span class='added'>Added</span>
+              <span class='solution-title'>{{solution.title}}
+                <i class="fal fa-pencil-alt ml-3"></i>
+              </span>
+            </div>
+            <div class='col-2'>
+              <div class='round-button'>
+                <i class="fal fa-eye"></i>
+              </div>
+              <div class='round-button'>A</div>
+            </div>
+            <div class='col-4'>
+              <button class='btn btn-light'>Select for implementation</button>
+            </div>
+
+            <div class='col-12 d-flex justify-content-center rate-it'>
+              <div class='col-2'>RATE IT</div>
+              <div class='col-5 d-flex align-content-center'>
+                <span class='mr-3'>Impact</span>
+                <div class='value-circles align-content-center'>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.impact >= 1}"></span>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.impact >= 2}"></span>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.impact >= 3}"></span>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.impact >= 4}"></span>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.impact === 5}"></span>
+                </div>
+              </div>
+              <div class='col-5 d-flex align-content-center'>
+                <span class='mr-3'>Feasibility</span>
+                <div class='value-circles'>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.feasibility >= 1}"></span>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.feasibility >= 2}"></span>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.feasibility >= 3}"></span>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.feasibility >= 4}"></span>
+                  <span class='small-circle' [ngClass]="{'filled' : solution.feasibility === 5}"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+    <!-- BACK AND CONTINUE -->
+    <div class='buttons-back-continue row justify-content-center mb-5'>
+      <div class='d-flex justify-content-center align-items-center back col-2'>&lt; Back</div>
+      <div class='d-flex justify-content-center align-items-center continue col-8 ml-4'>Continue &gt;</div>
+    </div>
+
+
+  </div>
+
+  <!-- ADD SOLUTION MODAL -->
+  <div class="modal fade" bsModal #addSolutionModal="bs-modal" tabindex="-1">
+    <div class="modal-dialog modal-md custom-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="title">Add a new solution to: reason description #1 {{addTopic}}</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="addSolutionModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class='row'>
+            <div class='col-6 d-flex flex-column'>
+              <span class='small-label'>Solution title</span>
+              <input class='form-control' [(ngModel)]='s.title' />
+            </div>
+            <div class='col-6 d-flex flex-column'>
+              <span class='small-label'>Date</span>
+              <input class='form-control' [(ngModel)]='s.description' />
+            </div>
+            <div class='col-6 d-flex flex-column'>
+              <span class='small-label'>Responsable</span>
+              <select class="custom-select form-control btn-primary" [(ngModel)]="s.responsable" (onChange)="onChange($event)" name='reasonType'>
+                <option *ngFor="let resp of selectResponsables" [value]="cat" type="button">{{ resp }}</option>
+              </select>
+            </div>
+            <div class='col-6 d-flex flex-column'>
+              <span class='small-label'>Description</span>
+              <input class='form-control' [(ngModel)]='s.description' />
+            </div>
+          </div>
+        </div>
+        <div class='modal-footer'>
+          <div class="col-12">
+            <a class="cancel-link col-3" (click)='this.addReasonModal.hide()'>Cancel</a>
+            <button class="btn btn-primary col-3" (click)="addsolution()">Add solution</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
