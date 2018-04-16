@@ -8,7 +8,7 @@
   </div>
 
   <div class='row'>
-    <h2 class='my-4'>Please describe the mail aspects of your problem</h2>
+    <h2 class='my-4'>Please describe the different aspects of your problem</h2>
   </div>
 
   <div class='row'>
@@ -16,10 +16,67 @@
     <div class='col card'>
       <div class='row align-items-center justify-content-between px-3 mb-2'>
         <span class='small-label'>Materials</span>
+        <button class='btn add-reason' (click)='showAddReasonModal("materials")'>+ add a reason</button>
+      </div>
+      <div class='reason-container'>
+        <div *ngFor="let reason of materials, let i = index" class='row reason px-3 my-2'>
+          <div class='description'>{{reason.description}}</div>
+          <div class='round-button' (click)='deleteReason(materials, i)'>
+            <i class="fal fa-trash"></i>
+          </div>
+          <div class='round-button'>
+            <i class="fal fa-pencil-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 2 -->
+    <div class='col card'>
+      <div class='row align-items-center justify-content-between px-3 mb-2'>
+        <span class='small-label'>Method</span>
+        <button class='btn add-reason' (click)='showAddReasonModal("method")'>+ add a reason</button>
+      </div>
+      <div class='reason-container'>
+        <div *ngFor="let reason of method, let i = index" class='row reason px-3 my-2'>
+          <div class='description'>{{reason.description}}</div>
+          <div class='round-button' (click)='deleteReason(material, i)'>
+            <i class="fal fa-trash"></i>
+          </div>
+          <div class='round-button'>
+            <i class="fal fa-pencil-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 3 -->
+    <div class='col card'>
+      <div class='row align-items-center justify-content-between px-3 mb-2'>
+        <span class='small-label'>Mother Nature</span>
+        <button class='btn add-reason' (click)='showAddReasonModal("motherNature")'>+ add a reason</button>
+      </div>
+      <div class='reason-container'>
+        <div *ngFor="let reason of motherNature, let i = index" class='row reason px-3 my-2'>
+          <div class='description'>{{reason.description}}</div>
+          <div class='round-button' (click)='deleteReason(material, i)'>
+            <i class="fal fa-trash"></i>
+          </div>
+          <div class='round-button'>
+            <i class="fal fa-pencil-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <!-- CARD 1 -->
+    <div class='col card'>
+      <div class='row align-items-center justify-content-between px-3 mb-2'>
+        <span class='small-label'>Machine</span>
         <button class='btn add-reason' (click)='showAddReasonModal(value)'>+ add a reason</button>
       </div>
       <div class='reason-container'>
-        <div *ngFor="let reason of material, let i = index" class='row reason px-3 my-2'>
+        <div *ngFor="let reason of machine, let i = index" class='row reason px-3 my-2'>
           <div class='description'>{{reason.description}}</div>
           <div class='round-button' (click)='deleteReason(material, i)'>
             <i class="fal fa-trash"></i>
@@ -32,12 +89,26 @@
     </div>
     <!-- CARD 2 -->
     <div class='col card'>
-      
+      <div class='row align-items-center justify-content-between px-3 mb-2'>
+        <span class='small-label'>Man</span>
+        <button class='btn add-reason' (click)='showAddReasonModal(value)'>+ add a reason</button>
+      </div>
+      <div class='reason-container'>
+        <div *ngFor="let reason of man, let i = index" class='row reason px-3 my-2'>
+          <div class='description'>{{reason.description}}</div>
+          <div class='round-button' (click)='deleteReason(material, i)'>
+            <i class="fal fa-trash"></i>
+          </div>
+          <div class='round-button'>
+            <i class="fal fa-pencil-alt"></i>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- CARD 3 -->
-    <div class='col card'>
-      
-    </div>
+
+
+
   </div>
 
   <!-- BACK AND CONTINUE -->
@@ -47,4 +118,40 @@
   </div>
 
 
+</div>
+
+<!-- ADD REASON MODAL -->
+<div class="modal fade" bsModal #addReasonModal="bs-modal" tabindex="-1">
+  <div class="modal-dialog modal-md custom-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="title">Add new reason to: {{addTopic}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="addReasonModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class='row'>
+          <div class='col-6 d-flex flex-column'>
+            <span class='small-label'>Description</span>  
+            <input class='form-control' [(ngModel)]='reason.description'/>
+          </div>
+          <div clasS='col-6 d-flex flex-column'>
+            <span class='small-label'>Type</span>
+            <select class="custom-select form-control btn-primary" [(ngModel)]="reason.type" (onChange)="onChange($event)" name='reasonType'>
+              <option *ngFor="let cat of reasonCategory" [value]="cat" type="button">{{ cat }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class='modal-footer'>
+        <div class="col-12">
+
+            <a class="cancel-link col-3" (click)='this.addReasonModal.hide()'>Cancel</a>
+            <button class="btn btn-primary col-3" (click)="addReason()">Add reason</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
