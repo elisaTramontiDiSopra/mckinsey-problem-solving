@@ -1,0 +1,50 @@
+<div class='container'>
+  <!-- TITLE -->
+  <div class='row my-4'>
+    <div class='title-container col-6 d-flex'>
+      <input class='title col-10' [(ngModel)]="problem.title" />
+      <i class="title-icon col-2 fal fa-pencil-alt"></i>
+    </div>
+  </div>
+
+  <div class='row'>
+    <h2 class='my-4'>Please describe the mail aspects of your problem</h2>
+  </div>
+
+  <div class='row'>
+    <!-- CARD 1 -->
+    <div class='col card'>
+      <div class='row align-items-center justify-content-between px-3 mb-2'>
+        <span class='small-label'>Materials</span>
+        <button class='btn add-reason' (click)='showAddReasonModal(value)'>+ add a reason</button>
+      </div>
+      <div class='reason-container'>
+        <div *ngFor="let reason of material, let i = index" class='row reason px-3 my-2'>
+          <div class='description'>{{reason.description}}</div>
+          <div class='round-button' (click)='deleteReason(material, i)'>
+            <i class="fal fa-trash"></i>
+          </div>
+          <div class='round-button'>
+            <i class="fal fa-pencil-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 2 -->
+    <div class='col card'>
+      
+    </div>
+    <!-- CARD 3 -->
+    <div class='col card'>
+      
+    </div>
+  </div>
+
+  <!-- BACK AND CONTINUE -->
+  <div class='buttons-back-continue row justify-content-center mb-5'>
+    <div class='d-flex justify-content-center align-items-center back col-2'>&lt; Back</div>
+    <div class='d-flex justify-content-center align-items-center continue col-8 ml-4'>Continue &gt;</div>
+  </div>
+
+
+</div>

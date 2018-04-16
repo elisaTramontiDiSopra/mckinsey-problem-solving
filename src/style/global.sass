@@ -1,0 +1,62 @@
+@import ~style/variables
+@import ~style/bootstrap
+@import ~style/fonts
+@import ~ladda/dist/ladda.min.css
+@import ~ngx-toastr/toastr-bs4-alert.scss
+// uncomment this for default toastr style.
+// @import '~ngx-toastr/toastr.css';
+
+html
+  font-size: 16px !important
+  @include media-breakpoint-down(sm)
+    font-size: 14px !important
+
+  @include media-breakpoint-down(xs)
+    font-size: 12px !important
+
+// toaster positioning class
+.toast-center
+  top: 20px
+  right: 0
+  width: 100%
+  .toast
+    width: 300px !important
+    margin-left: auto !important
+    margin-right: auto !important
+
+//TYPOGRAPHY
+h2 
+  font-size: 2rem
+  font-weight: 300
+.small-label
+  font-weight: bold
+  text-align: left
+
+//BUTTONS BACK CONTINUE
+.buttons-back-continue
+  div  
+    height: $rowHeight
+    border-radius: 80px
+    display: flex
+    align-content: center
+    justify-content: center
+    text-transform: uppercase
+  .back
+    background-color: #bbbbbb
+  .continue
+    background-color: #333333
+    color: #fff
+    
+// BUTTONS
+.round-button
+  width: 2rem
+  border-radius: 50%
+  background-color: #000
+  height: 2rem
+  color: #fff
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-right: 5px
+  float: left  
+  cursor: pointer

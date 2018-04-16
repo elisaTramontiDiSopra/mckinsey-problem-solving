@@ -1,0 +1,73 @@
+<div class='container'>
+  <!-- TITLE -->
+  <div class='row my-4'>
+    <div class='title-container col-6 d-flex'>
+      <input class='title col-10' [(ngModel)]="problem.title" />
+      <i class="title-icon col-2 fal fa-pencil-alt"></i>
+    </div>
+  </div>
+
+  <div class='row'>
+    <h2 class='my-4'>Please describe the mail aspects of your problem</h2>
+    <div class='col-10'>
+
+      <div class='row flex-column mb-4'>
+        <span class='small-label'>Problem owner</span>
+        <select class="custom-select form-control btn-primary col-6" [(ngModel)]="problem.owner" (ngModelChange)="wm.setStatus($event)">
+          <option *ngFor="let btn of select" type="button" [ngValue]="btn.id">{{ btn.label }}</option>
+        </select>
+      </div>
+
+      <div class='row flex-column mb-4'>
+        <span class='small-label'>Problem statement</span>
+        <textarea class="textarea form-control" [(ngModel)]="problem.statment" rows="5"></textarea>
+      </div>
+
+      <!-- HORIZONTAL INPUTS -->
+      <div class='single-input mb-4'>
+        <div class='row single-input-row mb-4'>
+          <div class='label col-3'>Where</div>
+          <input class='value col-9' [(ngModel)]="problem.where" />
+        </div>
+        <div class='row single-input-row mb-4'>
+          <div class='label col-3'>When</div>
+          <input class='value col-9' [(ngModel)]="problem.when" />
+        </div>
+        <div class='row single-input-row mb-4'>
+          <div class='label col-3'>Future state</div>
+          <input class='value col-9' [(ngModel)]="problem.future" />
+        </div>
+        <div class='row single-input-row mb-4'>
+          <div class='label col-3'>Measure impact</div>
+          <input class='value col-9' [(ngModel)]="problem.measure" />
+        </div>
+      </div>
+
+      <div class='row mb-4'>
+        <div class='col pl-0'>
+          <span class='row px-3 small-label'>Problem owner</span>
+          <select class="custom-select form-control btn-primary col-12" [(ngModel)]="problem.machine" (ngModelChange)="wm.setStatus($event)">
+            <option *ngFor="let btn of selectMachine" type="button" [ngValue]="btn.id">{{ btn.label }}</option>
+          </select>
+        </div>
+        <div class='col pr-0'>
+          <span class='row px-3 small-label'>Tags</span>
+          <input class='form-control col-12' [(ngModel)]="problem.tags" />
+        </div>
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+
+  <!-- BACK AND CONTINUE -->
+  <div class='buttons-back-continue row justify-content-center mb-5'>
+    <div class='d-flex justify-content-center align-items-center back col-2'>&lt; Back</div>
+    <div class='d-flex justify-content-center align-items-center continue col-8 ml-4'>Continue &gt;</div>
+  </div>
+
+</div>

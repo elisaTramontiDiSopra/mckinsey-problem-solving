@@ -1,0 +1,64 @@
+@import ~style/variables
+@import ~style/bootstrap
+
+\:host
+  display: block
+  text-align: center
+  min-height: 600px
+  .form
+    margin: 60px 0
+
+
+  .new-fact
+    text-transform: uppercase
+    padding: 0 15px
+    height: 60px
+
+  .problem-row
+    border-radius: $border-radius
+    margin: 5px 0
+    align-items: center
+    text-align: left
+    height: 60px
+  .problem-header
+    background-color: #ffff00
+    @extend .problem-row
+  .problem
+    background-color: #ddd
+    @extend .problem-row
+
+//ACTIONS DONE
+.actions
+  font-weight: 500
+  display: flex
+  justify-content: center
+  align-items: baseline
+  .actions-numbers
+    color: $primary
+    font-weight: 300
+    font-size: 2rem
+  .bar
+    width: 200px
+    height: 10px
+    background-color: #000
+    margin: 0 10px
+    span 
+      height: 15px
+      display: block
+      float: left
+    .done
+      background-color: #82ff05
+    .todo
+      background-color: #ff0905
+//PROGRESS CIRCLES
+.progress-circles
+  display: flex
+  .small-circle
+    width: 10px
+    height: 10px
+    display: block
+    border-radius: 50%
+    background-color: #ffffff
+    margin-right: 2px
+  .filled 
+    background-color: #555555
